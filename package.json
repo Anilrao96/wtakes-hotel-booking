@@ -1,0 +1,9 @@
+{
+  "name": "wtakes",
+  "version": "1.0.0",
+  "description": "Hotel Booking Website",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "vercel --prod"
+  }
+}

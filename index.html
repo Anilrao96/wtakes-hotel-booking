@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wtakes - Hotel Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>wtakes</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Find Your Perfect Stay</h2>
+            <div class="search-box">
+                <input type="text" id="destination" placeholder="Where are you going?">
+                <input type="date" id="checkin">
+                <input type="date" id="checkout">
+                <input type="number" id="guests" placeholder="Guests" min="1" value="2">
+                <button onclick="searchHotels()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="hotels" id="hotels">
+        <div class="container">
+            <h2>Popular Hotels</h2>
+            <div id="hotel-list" class="hotel-grid"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 wtakes. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
