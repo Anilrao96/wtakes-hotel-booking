@@ -40,9 +40,69 @@ function searchHotels() {
     document.getElementById('hotels').scrollIntoView({ behavior: 'smooth' });
 }
 
+let selectedHotel = null;
+const stripe = Stripe('pk_test_51QdVLyP3aBcdefghijklmnopqrstuvwxyz'); // Replace with your Stripe key
+
 function bookHotel(id) {
-    const hotel = hotels.find(h => h.id === id);
-    alert(`Booking confirmed for ${hotel.name}!\nPrice: $${hotel.price}/night`);
+    selectedHotel = hotels.find(h => h.id === id);
+    const checkin = document.getElementById('checkin').value || 'Not selected';
+    const checkout = document.getElementById('checkout').value || 'Not selected';
+    const guests = document.getElementById('guests').value || 2;
+    
+    document.getElementById('booking-details').innerHTML = `
+        <h3>${selectedHotel.name}</h3>
+        <p><strong>Location:</strong> ${selectedHotel.location}</p>
+        <p><strong>Check-in:</strong> ${checkin}</p>
+        <p><strong>Check-out:</strong> ${checkout}</p>
+        <p><strong>Guests:</strong> ${guests}</p>
+        <p><strong>Price:</strong> $${selectedHotel.price}/night</p>
+        <hr>
+        <h3>Total: $${selectedHotel.price}</h3>
+    `;
+    
+    document.getElementById('payment-modal').style.display = 'block';
+}
+
+function closePayment() {
+    document.getElementById('payment-modal').style.display = 'none';
+}
+
+function payWithStripe() {
+    // Stripe Checkout
+    alert('Redirecting to Stripe payment...\n\nTo enable real payments:\n1. Sign up at https://stripe.com\n2. Get your API keys\n3. Replace the test key in script.js');
+    
+    // Real implementation:
+    // stripe.redirectToCheckout({
+    //     lineItems: [{price: 'price_xxx', quantity: 1}],
+    //     mode: 'payment',
+    //     successUrl: window.location.href + '?success=true',
+    //     cancelUrl: window.location.href + '?canceled=true',
+    // });
+}
+
+function payWithPayPal() {
+    alert('Redirecting to PayPal...\n\nTo enable PayPal:\n1. Sign up at https://paypal.com/developer\n2. Get Client ID\n3. Integrate PayPal SDK');
+    
+    // Real implementation requires PayPal SDK
+}
+
+function payWithGPay() {
+    alert('Google Pay integration\n\nTo enable:\n1. Set up Google Pay API\n2. Add payment gateway\n3. Configure merchant account');
+    
+    // Real implementation requires Google Pay API
+}
+
+function payWithApplePay() {
+    alert('Apple Pay integration\n\nTo enable:\n1. Register Apple Merchant ID\n2. Configure payment processor\n3. Add Apple Pay button');
+    
+    // Real implementation requires Apple Pay setup
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('payment-modal');
+    if (event.target == modal) {
+        closePayment();
+    }
 }
 
 displayHotels(hotels);
